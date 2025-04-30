@@ -9,7 +9,7 @@
     "sourceMap": true,
     "allowJs": true,
     "moduleResolution": "node",
-    "rootDir": ".",
+    "rootDir": "./",
     "declaration": true,
     "declarationDir": "./dist",
     "noImplicitReturns": true,
@@ -25,6 +25,7 @@
   "exclude": [
     "node_modules",
     "scripts",
-    "jest"
+    "jest",
+    "dist"
   ]
 }

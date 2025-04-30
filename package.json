@@ -10,7 +10,7 @@
     "dev": "tsx watch index.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "build": "pkgroll --src ./src --dist ./dist --entry ./src/index.ts --name index.js --compress"
+    "build": "pkgroll --src ./ --dist ./dist --entry ./index.ts --name index.js --compress"
   },
   "author": "Arkapravo-Ghosh",
   "license": "MIT",
