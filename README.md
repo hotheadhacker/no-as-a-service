@@ -38,6 +38,10 @@ Use it in apps, bots, landing pages, Slack integrations, rejection letters, or w
 
 ---
 
+## ☁️ Cloud-Hosting
+
+For AWS deployment instructions, see [README-aws.md](README-aws.md).
+
 ## 🛠️ Self-Hosting
 
 Want to run it yourself? It’s lightweight and simple.

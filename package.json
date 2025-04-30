@@ -4,10 +4,21 @@
   "description": "A lightweight API that returns random rejection or no reasons.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "create-s3": "uuid=$(uuidgen | tr '[:upper:]' '[:lower:]') && echo \"no-as-service-$uuid\" > .s3-name && aws s3api head-bucket --bucket $(cat .s3-name) 2>/dev/null || aws s3 mb s3://$(cat .s3-name)",
+    "package": "sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket $(cat .s3-name)",
+    "deploy": "sam deploy --template-file packaged.yaml --stack-name no-as-service --capabilities CAPABILITY_IAM",
+    "cleanup": "sam delete --stack-name no-as-service --no-prompts"
   },
   "author": "hotheadhacker",
   "license": "MIT",
+  "keywords": [
+    "no",
+    "rejection",
+    "api",
+    "service",
+    "lambda"
+  ],
   "dependencies": {
     "express": "^4.18.2",
     "express-rate-limit": "^7.0.0"

@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: No-as-a-Service Lambda API
+
+Resources:
+  NoAsAServiceFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: lambda.handler
+      Runtime: nodejs18.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 3
+      Events:
+        NoApi:
+          Type: Api
+          Properties:
+            Path: /no
+            Method: get
+      Environment:
+        Variables:
+          NODE_ENV: production
+
+Outputs:
+  NoAsAServiceApi:
+    Description: "API Gateway endpoint URL for No-as-a-Service"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/no"
+  NoAsAServiceFunction:
+    Description: "Lambda Function ARN"
+    Value: !GetAtt NoAsAServiceFunction.Arn
