@@ -4,9 +4,13 @@
   "description": "A lightweight API that returns random rejection or no reasons.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "deduplicate": "node deduplicate.js"
   },
   "author": "hotheadhacker",
+  "contributors": [
+    "Bryan Elliott <fordiman@gmail.com>"
+  ],
   "license": "MIT",
   "dependencies": {
     "express": "^4.18.2",
