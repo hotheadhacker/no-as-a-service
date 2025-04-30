@@ -46,6 +46,15 @@ GET /no?category=funny
 
 Use the `category` query parameter to filter reasons by type.
 
+**Available categories:**
+
+- professional
+- personal
+- funny
+- relationship
+- direct
+- grateful
+
 Example:
 
 ```http
