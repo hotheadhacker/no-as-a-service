@@ -29,9 +29,12 @@ const LIMIT_RATE = intArg(process.env.LIMIT_RATE, 10, 0);
 const toShuffled = (array) => [...array].toSorted(() => Math.random() > 0.5 ? 1 : -1);
 
 // Load reasons from JSON
-const reasons = JSON.parse(readFileSync('./reasons.json', 'utf-8'));
+const reasons = { default: JSON.parse(readFileSync('./reasons.json', 'utf-8')) };
 // A copy of the "reasons" deck to pluck items from.
-let deck = toShuffled(reasons);
+let decks = {};
+for (const [key, value] of Object.entries(reasons)) {
+  decks[key] = toShuffled(value);
+}
 
 // Rate limiter: default is 10 requests per minute per IP
 if (LIMIT_RATE !== 0) {
@@ -48,11 +51,34 @@ if (LIMIT_RATE !== 0) {
   console.info(`Rate limit disabled`);
 }
 
+function parseLanguages(langHeader) {
+  const langs = new Set();
+  for (const group of langHeader.split(';')) {
+    for (const item of group.split(',')) {
+      const spec = item.trim();
+      if (spec.startsWith('q=')) continue;
+      if (spec === '*') continue;
+      langs.add(spec);
+      if (spec.indexOf('-') !== -1) {
+        langs.add(spec.split('-')[0]);
+      }
+    }
+  }
+  return [...langs];
+}
+
 // Random rejection reason endpoint
 app.get('/no', (req, res) => {
+  let language = 'default';
+  for (const lang of parseLanguages(req.headers['accept-language'])) {
+    if (lang in decks) {
+      language = lang;
+    }
+  }
+  const deck = decks[language];
   // Deck is empty; reshuffle
   if (deck.length === 0) {
-    deck = toShuffled(reasons);
+    deck = toShuffled(reasons[language]);
   }
   const reason = deck.shift();
   res.json({ reason });
