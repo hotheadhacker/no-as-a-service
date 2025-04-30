@@ -1,6 +1,6 @@
 const express = require('express');
 const rateLimit = require('express-rate-limit');
-const fs = require('fs');
+const { readFileSync } = require('fs');
 
 const app = express();
 app.set('trust proxy', true);
@@ -21,8 +21,17 @@ const intArg = (value, def = 0, min = -Infinity, max = Infinity) => {
 const PORT = intArg(process.env.PORT, 3000, 1024, 65535);
 const LIMIT_RATE = intArg(process.env.LIMIT_RATE, 10, 0);
 
+/**
+ * Shuffle an array into a new array
+ * @param {any[]} array Array of items
+ * @returns {any[]} The shuffled array
+ */
+const toShuffled = (array) => [...array].toSorted(() => Math.random() > 0.5 ? 1 : -1);
+
 // Load reasons from JSON
-const reasons = JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));
+const reasons = JSON.parse(readFileSync('./reasons.json', 'utf-8'));
+// A copy of the "reasons" deck to pluck items from.
+let deck = toShuffled(reasons);
 
 // Rate limiter: default is 10 requests per minute per IP
 if (LIMIT_RATE !== 0) {
@@ -41,7 +50,11 @@ if (LIMIT_RATE !== 0) {
 
 // Random rejection reason endpoint
 app.get('/no', (req, res) => {
-  const reason = reasons[Math.floor(Math.random() * reasons.length)];
+  // Deck is empty; reshuffle
+  if (deck.length === 0) {
+    deck = toShuffled(reasons);
+  }
+  const reason = deck.shift();
   res.json({ reason });
 });
 
