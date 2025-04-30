@@ -16,7 +16,7 @@ Built for humans, excuses, and humor.
 
 **Base URL**
 ```
-https://naas.isalman.dev/no
+https://no.arkapravo.in/no
 ```
 
 **Method:** `GET`
