@@ -8,7 +8,7 @@ Resources:
     Properties:
       CodeUri: ./
       Handler: lambda.handler
-      Runtime: nodejs18.x
+      Runtime: nodejs22.x
       Architectures:
         - x86_64
       MemorySize: 128

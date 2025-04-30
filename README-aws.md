@@ -7,7 +7,7 @@ This guide explains how to deploy No-as-a-Service on AWS using serverless archit
 - AWS Account
 - AWS CLI installed and configured
 - SAM CLI installed
-- Node.js 18.x or later
+- Node.js 22.x or later
 
 ## 📦 Deployment Steps
 
@@ -38,7 +38,7 @@ This will deploy your application using AWS SAM with the following stack name: `
 ## 🏗️ Infrastructure
 
 The service is deployed using these AWS components:
-- AWS Lambda (Node.js 18.x runtime)
+- AWS Lambda (Node.js 22.x runtime)
 - Amazon API Gateway
 - IAM Roles and Policies
 
