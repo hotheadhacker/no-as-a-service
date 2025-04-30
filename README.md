@@ -1,11 +1,11 @@
-# ❌ No-as-a-Service
+# ❌ No-as-a-Service, but in TypeScript
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/hotheadhacker/no-as-a-service/main/assets/imgs/image.png" width="800" alt="No-as-a-Service Banner"/>
 </p>
 
 
-Ever needed a graceful way to say “no”?  
+Ever needed a graceful way to say “no”?
 This tiny API returns random, generic, creative, and sometimes hilarious rejection reasons — perfectly suited for any scenario: personal, professional, student life, dev life, or just because.
 
 Built for humans, excuses, and humor.
@@ -19,7 +19,7 @@ Built for humans, excuses, and humor.
 https://naas.isalman.dev/no
 ```
 
-**Method:** `GET`  
+**Method:** `GET`
 **Rate Limit:** `10 requests per minute per IP`
 
 ### 🔄 Example Request
