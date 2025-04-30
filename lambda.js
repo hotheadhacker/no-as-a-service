@@ -5,16 +5,9 @@ const noService = new NoService();
 
 exports.handler = async (event) => {
     try {
-        // Get response based on path
-        const path = event.path || '/no';
-        let responseBody = {};
 
-        if (path === '/reasons') {
-            responseBody = { reasons: noService.getAllReasons() };
-        } else {
-            responseBody = { reason: noService.getRandomReason() };
-        }
-        
+        responseBody = { reason: noService.getRandomReason() };
+
         return {
             statusCode: 200,
             headers: {

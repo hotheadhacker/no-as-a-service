@@ -6,11 +6,7 @@ class NoService {
     }
 
     loadReasons() {
-        try {
-            return require('./reasons.json');
-        } catch (error) {
-            return JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));
-        }
+        return JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));
     }
 
     getRandomReason() {
