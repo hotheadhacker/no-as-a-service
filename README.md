@@ -80,6 +80,12 @@ You can also change the port using an environment variable:
 PORT=5000 npm start
 ```
 
+You can disable / configure rate limiting by starting with the `LIMIT_RATE` environment variable
+```bash
+LIMIT_RATE=0 npm start # start with limiting disabled
+LIMIT_RATE=20 npm start # start with limit at 20 requests per minute
+```
+
 ---
 
 ## 📁 Project Structure
