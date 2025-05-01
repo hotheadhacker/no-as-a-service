@@ -4,7 +4,6 @@
   <img src="https://raw.githubusercontent.com/hotheadhacker/no-as-a-service/main/assets/imgs/image.png" width="800" alt="No-as-a-Service Banner"/>
 </p>
 
-
 Ever needed a graceful way to say “no”?  
 This tiny API returns random, generic, creative, and sometimes hilarious rejection reasons — perfectly suited for any scenario: personal, professional, student life, dev life, or just because.
 
@@ -15,6 +14,7 @@ Built for humans, excuses, and humor.
 ## 🚀 API Usage
 
 **Base URL**
+
 ```
 https://naas.isalman.dev/no
 ```
@@ -23,14 +23,49 @@ https://naas.isalman.dev/no
 **Rate Limit:** `120 requests per minute per IP`
 
 ### 🔄 Example Request
+
 ```http
 GET /no
 ```
 
+Or filter by category:
+
+```http
+GET /no?category=funny
+```
+
 ### ✅ Example Response
+
 ```json
 {
   "reason": "This feels like something Future Me would yell at Present Me for agreeing to."
+}
+```
+
+### 🗂️ Optional Query: `category`
+
+Use the `category` query parameter to filter reasons by type.
+
+**Available categories:**
+
+- professional
+- personal
+- funny
+- relationship
+- direct
+- grateful
+
+Example:
+
+```http
+GET /no?category=student
+```
+
+If no reasons are found for that category:
+
+```json
+{
+  "error": "No reasons found for the given category."
 }
 ```
 
@@ -43,27 +78,32 @@ Use it in apps, bots, landing pages, Slack integrations, rejection letters, or w
 Want to run it yourself? It’s lightweight and simple.
 
 ### 1. Clone this repository
+
 ```bash
 git clone https://github.com/hotheadhacker/no-as-a-service.git
 cd no-as-a-service
 ```
 
 ### 2. Install dependencies
+
 ```bash
 npm install
 ```
 
 ### 3. Start the server
+
 ```bash
 npm start
 ```
 
 The API will be live at:
+
 ```
 http://localhost:3000/no
 ```
 
 You can also change the port using an environment variable:
+
 ```bash
 PORT=5000 npm start
 ```
@@ -115,3 +155,7 @@ Created with creative stubbornness by [hotheadhacker](https://github.com/hothead
 ## 📄 License
 
 MIT — do whatever, just don’t say yes when you should say no.
+
+```
+
+```
