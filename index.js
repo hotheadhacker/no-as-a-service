@@ -24,9 +24,9 @@ app.get('/no', (req, res) => {
   res.json({ reason });
 });
 
-app.get('/no/pt', (req, res) => {
-  const reasonpt = reasonpt[Math.floor(Math.random() * reasonpt.length)];
-  res.json({ reasonpt });
+app.get('/no/br', (req, res) => {
+  const reason = reasonpt[Math.floor(Math.random() * reasonpt.length)];
+  res.json({ reason });
 });
 
 // Start server
