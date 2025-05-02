@@ -7,11 +7,23 @@ const app = express();
 app.set('trust proxy', true);
 const PORT = process.env.PORT || 3000;
 
-const availableLanguages = {
-  'en': 'en.json',
-  'de': 'de.json',
-  'fr': 'fr.json',
-};
+function getAvailableLanguages() {
+  const langDir = path.join(__dirname, 'reasons');
+  const files = fs.readdirSync(langDir);
+  
+  const languages = {};
+  for (const file of files) {
+    if (file.endsWith('.json')) {
+      // Extract language code from filename (e.g., 'en.json' -> 'en')
+      const langCode = path.basename(file, '.json');
+      languages[langCode] = file;
+    }
+  }
+  
+  return languages;
+}
+
+const availableLanguages = getAvailableLanguages();
 
 // Default language
 const defaultLanguage = 'en';
