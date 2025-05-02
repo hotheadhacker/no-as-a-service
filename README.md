@@ -140,5 +140,5 @@ MIT — do whatever, just don’t say yes when you should say no.
 ## ⛙ Contributing
 
 1. To contribute new reasons, fork and clone locally.  
-2. "No" reasons are in `reasons.json`.  To add new ones, simply add them to the relevant language section, and run `npm run deduplicate` to deduplicate and sort the list (so that multiple peoples' contributions will tend not to overlap). `default` is English.
+2. "No" reasons are in `assets/reasons`.  To add new ones, simply add them to the relevant language file, and run `npm run deduplicate` to deduplicate and sort the list (so that multiple peoples' contributions will tend not to overlap). `default` is English.
 3. Then commit, push, and start your PR.
