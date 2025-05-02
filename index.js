@@ -50,21 +50,16 @@ if (LIMIT_RATE !== 0) {
 } else {
   console.info(`Rate limit disabled`);
 }
-
+const QUALITY_RX = /;q=(0\.\d+)$/;
 function parseLanguages(langHeader) {
-  const langs = new Set();
-  for (const group of langHeader.split(';')) {
-    for (const item of group.split(',')) {
-      const spec = item.trim();
-      if (spec.startsWith('q=')) continue;
-      if (spec === '*') continue;
-      langs.add(spec);
-      if (spec.indexOf('-') !== -1) {
-        langs.add(spec.split('-')[0]);
-      }
-    }
+  const langs = {};
+  for (const lang of langHeader.split(',')) {
+    const q = (lang.match(QUALITY_RX) ?? [])[1] ?? 1.0;
+    const cc = lang.replace(QUALITY_RX, '').trim();
+    if (cc === '*') continue;
+    langs[cc] ??= q;
   }
-  return [...langs];
+  return Object.keys(langs).toSorted((a, b) => langs[b] - langs[a]);
 }
 
 // Random rejection reason endpoint
