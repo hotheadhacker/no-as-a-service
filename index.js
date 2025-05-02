@@ -1,6 +1,6 @@
 const express = require('express');
 const rateLimit = require('express-rate-limit');
-const { readFileSync } = require('fs');
+const { readReasons } = require('./reasons.js');
 
 const app = express();
 app.set('trust proxy', true);
@@ -29,7 +29,7 @@ const LIMIT_RATE = intArg(process.env.LIMIT_RATE, 10, 0);
 const toShuffled = (array) => [...array].toSorted(() => Math.random() > 0.5 ? 1 : -1);
 
 // Load reasons from JSON
-const reasons = { default: JSON.parse(readFileSync('./reasons.json', 'utf-8')) };
+const reasons = readReasons();
 // A copy of the "reasons" deck to pluck items from.
 let decks = {};
 for (const [key, value] of Object.entries(reasons)) {

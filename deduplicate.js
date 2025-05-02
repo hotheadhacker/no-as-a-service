@@ -1,5 +1,7 @@
-const { readFileSync, writeFileSync } = require("fs");
-const reasons = JSON.parse(readFileSync("./reasons.json", "utf8"));
-const deduplicated = [...new Set(reasons)];
-const sorted = deduplicated.toSorted((a, b) => a.toLowerCase() < b.toLowerCase() ? -1 : 1);
-writeFileSync("./reasons.json", JSON.stringify(sorted, null, 2), "utf8");
+const { reasonLanguages, readJson, writeJson } = require("./reasons.js");
+
+for (const [lang, file] of reasonLanguages()) {
+  const reasons = readJson(file);
+  const normalized = [...new Set(reasons)].sort((a, b) => a.toLowerCase() < b.toLowerCase() ? -1 : 1);
+  writeJson(file, normalized);
+}
