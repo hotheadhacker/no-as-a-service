@@ -50,6 +50,27 @@ Use it in apps, bots, landing pages, Slack integrations, rejection letters, or w
 
 ---
 
+## 🌐 Language Support
+
+No-as-a-Service supports multiple languages based on the `Accept-Language` header:
+
+### Example Request with Language Preference
+```http
+GET /no
+Accept-Language: fr
+```
+
+### Currently Supported Languages
+- English (en) - Default
+- German (de)
+- French (fr)
+
+### Contributing Translations
+We welcome contributions for new languages! Simply create a new JSON file in the `reasons` directory:
+1. Name it using the 2-letter language code (e.g., `es.json` for Spanish)
+2. Add your creative rejection phrases as a JSON array
+3. Submit a pull request
+
 ## 🛠️ Self-Hosting
 
 Want to run it yourself? It’s lightweight and simple.
