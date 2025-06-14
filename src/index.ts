@@ -31,11 +31,20 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
+const allStatusCodes = [400, 409, 412, 413, 417, 418, 422, 425, 429];
+const earlyMorningStatusCodes = [413, 409, 412, 417, 422, 425];
+
 // Random rejection reason endpoint
 app.get('/no', (req, res) => {
   const getReasons = reasons[Math.floor(Math.random()*reasons.length)];   // const reason = reasons[Math.floor(Math.random() * reasons.length)];
   const reason = getReasons.reason;
-  res.json({ reason });
+  
+  const now  = new Date();
+  const hours = now.getHours();
+  const statusPool = hours < 7 ? earlyMorningStatusCodes : allStatusCodes;
+  const getRandomStatus = statusPool[Math.floor(Math.random()*statusPool.length)];
+  
+  res.status(getRandomStatus).json({ reason });
 });
 
 // Start server
