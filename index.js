@@ -1,13 +1,13 @@
-const express = require('express');
-const rateLimit = require('express-rate-limit');
-const fs = require('fs');
+import { readFile } from "node:fs/promises";
+import express from "express";
+import rateLimit from "express-rate-limit";
 
 const app = express();
 app.set('trust proxy', true);
 const PORT = process.env.PORT || 3000;
 
 // Load reasons from JSON
-const reasons = JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));
+const reasons = JSON.parse(await readFile('./reasons.json', 'utf-8'));
 
 // Rate limiter: 120 requests per minute per IP
 const limiter = rateLimit({
