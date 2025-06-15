@@ -146,7 +146,7 @@ Here are some projects and websites that creatively integrate [no-as-a-service](
 6. **[Jargon-as-a-Service](https://github.com/diegoc-am/jargon-as-a-service)**
    Inspired by No-as-a-Service with a simple front end, you have to say some other things from time to time
 
-6. **[Your Project Here?](https://github.com/YOUR_REPO)**  
+7. **[Your Project Here?](https://github.com/YOUR_REPO)**  
    If you're using no-as-a-service in your project, open a pull request to be featured here!
 
 ---
