@@ -143,7 +143,10 @@ Here are some projects and websites that creatively integrate [no-as-a-service](
 5. **[NoAsAnApp](https://github.com/omar-jarid/NoAsAnApp)**  
    A simple native Android app calling no-as-a-service to provide negative responses.
 
-6. **[Your Project Here?](https://github.com/YOUR_REPO)**  
+6. **[Jargon-as-a-Service](https://github.com/diegoc-am/jargon-as-a-service)**
+   Inspired by No-as-a-Service with a simple front end, you have to say some other things from time to time
+
+7. **[Your Project Here?](https://github.com/YOUR_REPO)**  
    If you're using no-as-a-service in your project, open a pull request to be featured here!
 
 ---
