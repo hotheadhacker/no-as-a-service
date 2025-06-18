@@ -7,7 +7,10 @@ app.set('trust proxy', true);
 const PORT = process.env.PORT || 3000;
 
 // Load reasons from JSON
-const reasons = JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));
+const reasons = {
+  en: JSON.parse(fs.readFileSync('./reasons.json', 'utf-8')),
+  de: JSON.parse(fs.readFileSync('./reasons-de.json', 'utf-8'))
+};
 
 // Rate limiter: 120 requests per minute per IP
 const limiter = rateLimit({
