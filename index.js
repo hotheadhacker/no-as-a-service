@@ -15,7 +15,7 @@ const limiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
   max: 120,
   keyGenerator: (req, res) => {
-    return req.headers['cf-connecting-ip'] || req.ip; // Fallback if header missing
+    return req.headers['cf-connecting-ip'] || req.ip; // Fallback if header missing (or for non-CF)
   },
   message: { error: "Too many requests, please try again later. (120 reqs/min/IP)" }
 });
