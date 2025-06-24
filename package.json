@@ -9,6 +9,7 @@
   "author": "hotheadhacker",
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^16.5.0",
     "express": "^4.18.2",
     "express-rate-limit": "^7.0.0"
   }
