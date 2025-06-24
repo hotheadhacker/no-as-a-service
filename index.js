@@ -58,15 +58,17 @@ app.get('/no', async (req, res) => {
 
       const data = await response.json();
 
-      if (response.ok) {
-        const reason = data.choices?.[0]?.message?.content?.trim();
-        if (reason) {
-          return res.json({ reason, theme, source: 'llm' });
-        }
-        console.warn('LLM response was empty, falling back to local reasons.');
-      } else {
+      if (!response.ok) {
         console.error('Fetch failed, falling back to local reasons:', data.error.message);
+        return;
       }
+      
+      const reason = data.choices?.[0]?.message?.content?.trim();
+      if (reason) {
+        return res.json({ reason, theme, source: 'llm' });
+      }
+
+      console.warn('LLM response was empty, falling back to local reasons.');
     } catch (err) {
       console.error('LLM error, falling back to local reasons:', err.message);
     }
