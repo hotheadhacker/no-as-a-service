@@ -149,7 +149,6 @@ For reference, here’s the package config:
   "author": "hotheadhacker",
   "license": "MIT",
   "dependencies": {
-    "axios": "^1.10.0",
     "dotenv": "^16.5.0",
     "express": "^4.18.2",
     "express-rate-limit": "^7.0.0"

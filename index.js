@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const rateLimit = require('express-rate-limit');
 const fs = require('fs');
-const axios = require('axios');
 
 const app = express();
 app.set('trust proxy', true);
@@ -17,7 +16,7 @@ const reasons = JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));
 
 // Rate limiter: 120 requests per minute per IP
 const limiter = rateLimit({
-  windowMs: 60 * 1000, // 1 minute
+  windowMs: 60 * 1000,
   max: 120,
   keyGenerator: (req) => req.headers['cf-connecting-ip'] || req.ip,
   message: {
@@ -27,7 +26,6 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-// Random rejection reason endpoint
 app.get('/no', async (req, res) => {
   if (shouldUseLLM && OPENROUTER_API_KEY) {
     const theme = req.query.theme?.toLowerCase();
@@ -36,9 +34,13 @@ app.get('/no', async (req, res) => {
       : 'Give me a excuse to say no to something.';
 
     try {
-      const llmResponse = await axios.post(
-        'https://openrouter.ai/api/v1/chat/completions',
-        {
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${OPENROUTER_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           model,
           messages: [
             {
@@ -51,22 +53,20 @@ app.get('/no', async (req, res) => {
               content: userMessage,
             },
           ],
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${OPENROUTER_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        const reason = data.choices?.[0]?.message?.content?.trim();
+        if (reason) {
+          return res.json({ reason, theme, source: 'llm' });
         }
-      );
-
-      const reason = llmResponse.data.choices?.[0]?.message?.content?.trim();
-
-      if (reason) {
-        return res.json({ reason, theme, source: 'llm' });
+        console.warn('LLM response was empty, falling back to local reasons.');
+      } else {
+        console.error('Fetch failed, falling back to local reasons:', data.error.message);
       }
-
-      console.warn('LLM response was empty, falling back to local reasons.');
     } catch (err) {
       console.error('LLM error, falling back to local reasons:', err.message);
     }
@@ -76,7 +76,6 @@ app.get('/no', async (req, res) => {
   res.json({ reason, source: 'offline' });
 });
 
-// Start server
 app.listen(PORT, () => {
   console.log(`No-as-a-Service is running on port ${PORT}`);
 });
