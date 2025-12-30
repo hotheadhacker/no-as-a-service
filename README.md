@@ -74,7 +74,10 @@ The API will be live at:
 ```
 http://localhost:3000/no
 ```
-
+To get responses in Spanish, simply use the lang query parameter like this:
+```
+http://localhost:3000/no?lang=es
+```
 You can also change the port using an environment variable:
 ```bash
 PORT=5000 npm start
