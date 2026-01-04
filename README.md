@@ -143,7 +143,10 @@ Here are some projects and websites that creatively integrate [no-as-a-service](
 5. **[NoAsAnApp](https://github.com/omar-jarid/NoAsAnApp)**  
    A simple native Android app calling no-as-a-service to provide negative responses.
 
-6. **[Your Project Here?](https://github.com/YOUR_REPO)**  
+6. **[No-as-a-Service (Multilingual .NET Edition)](https://github.com/pjmeca/no-as-a-service)**  
+   A .NET 10 implementation using Native AOT for fast startup and low memory usage, with built-in multi-language support.
+
+7. **[Your Project Here?](https://github.com/YOUR_REPO)**  
    If you're using no-as-a-service in your project, open a pull request to be featured here!
 
 ---
