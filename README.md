@@ -36,6 +36,22 @@ GET /roast
 }
 ```
 
+### 🎌 Hindi Roast Endpoint
+
+Get roasts in Hindi:
+
+```http
+GET /roast/hindi
+```
+
+### ✅ Hindi Example Response
+
+```json
+{
+  "roast": "तुम्हारी value एक refund की तरह है।"
+}
+```
+
 Use it in apps, bots, Discord bots, Slack integrations, burn your friends, or anywhere you need to deliver a perfectly crafted insult.
 
 ---

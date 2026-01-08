@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 // Load roasts from JSON
 const roasts = JSON.parse(fs.readFileSync("./roasts.json", "utf-8"));
+const roastsHi = JSON.parse(fs.readFileSync("./roasts-hi.json", "utf-8"));
 
 // Rate limiter: 120 requests per minute per IP
 const limiter = rateLimit({
@@ -28,6 +29,12 @@ app.use(limiter);
 // Random roast endpoint
 app.get("/roast", (req, res) => {
   const roast = roasts[Math.floor(Math.random() * roasts.length)];
+  res.json({ roast });
+});
+
+// Random roast endpoint (Hindi)
+app.get("/roast/hindi", (req, res) => {
+  const roast = roastsHi[Math.floor(Math.random() * roastsHi.length)];
   res.json({ roast });
 });
 
