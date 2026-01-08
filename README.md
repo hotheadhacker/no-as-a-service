@@ -143,10 +143,12 @@ Here are some projects and websites that creatively integrate [no-as-a-service](
 5. **[NoAsAnApp](https://github.com/omar-jarid/NoAsAnApp)**  
    A simple native Android app calling no-as-a-service to provide negative responses.
 
-6. **[No as a Service - Raycast Extension](https://www.raycast.com/nedini/no-as-a-service)**  
+6. **[no-as-a-service-asp](https://github.com/sapph42/no-as-a-service)**  
+   A straight-forward implementation of NaaS in ASP.NET Core
+7. **[No as a Service - Raycast Extension](https://www.raycast.com/nedini/no-as-a-service)**  
    Get a random No from within Raycast. Just install the extension from the Raycast store, open Raycast, then type in 'Random No'. Raycast extension: [No as a Service](https://www.raycast.com/nedini/no-as-a-service).
 
-7. **[Your Project Here?](https://github.com/YOUR_REPO)**  
+8. **[Your Project Here?](https://github.com/YOUR_REPO)**  
    If you're using no-as-a-service in your project, open a pull request to be featured here!
 
 ---
