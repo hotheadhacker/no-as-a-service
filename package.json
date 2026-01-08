@@ -1,12 +1,12 @@
 {
-  "name": "no-as-service",
+  "name": "roast-as-a-service",
   "version": "1.0.0",
-  "description": "A lightweight API that returns random rejection or no reasons.",
+  "description": "A lightweight API that returns random, hilarious roasts. Perfect for when you need to roast someone in the most creative way possible.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
-  "author": "hotheadhacker",
+  "author": "rishmi5h",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
