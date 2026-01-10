@@ -41,7 +41,6 @@ app.get('/no', (req, res) => {
       // Extract languages from header (ignore quality values)
       // e.g. "en-US,en;q=0.9,fr;q=0.8" -> ["en", "en", "fr"]
       const acceptedLangs = req.headers['accept-language'].split(',').map(l => l.split(';')[0].trim()).map(l => l.split('-')[0]);
-      console.log(acceptedLangs);
       // Find the first accepted language that we have reasons for
       for (const al of acceptedLangs) {
         if (reasons[al]) {
