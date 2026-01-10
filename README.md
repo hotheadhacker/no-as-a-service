@@ -66,6 +66,13 @@ GET /no?lang=fr
   "reason": "Désolé, mais je dois refuser cette fois-ci."
 }
 ```
+
+In case you don't specify a language or if the specified language is not supported, the API will fallback to the `Accept-Language` header.
+
+If neither the `lang` parameter nor the `Accept-Language` header matches a supported language, the API will default to English (`en`).
+
+In both cases, the response will contain the language used for the rejection reason in the Content-Language header.
+
 ---
 
 ## 🛠️ Self-Hosting
