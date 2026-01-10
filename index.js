@@ -31,8 +31,8 @@ app.use(limiter);
 // Random rejection reason endpoint
 app.get('/no', (req, res) => {
   // Determine language from query parameter or default to 'en'
-  // If the requested language is not available, default to 'en'
-  // If the requested language is not specified, then check Accept-Language header
+  // If the requested language is not specified or not available, then check Accept-Language header
+  // If no match found, default to 'en'
   let lang = 'en';
   if (req.query.lang && reasons[req.query.lang]) {
     lang = req.query.lang;
@@ -42,6 +42,7 @@ app.get('/no', (req, res) => {
       // e.g. "en-US,en;q=0.9,fr;q=0.8" -> ["en", "en", "fr"]
       const acceptedLangs = req.headers['accept-language'].split(',').map(l => l.split(';')[0].trim()).map(l => l.split('-')[0]);
       console.log(acceptedLangs);
+      // Find the first accepted language that we have reasons for
       for (const al of acceptedLangs) {
         if (reasons[al]) {
           lang = al;
@@ -52,6 +53,8 @@ app.get('/no', (req, res) => {
   }
   const languageReasons = reasons[lang];
   const reason = languageReasons[Math.floor(Math.random() * languageReasons.length)]; 
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Content-Language', lang);
   res.json({ reason });
 });
 
