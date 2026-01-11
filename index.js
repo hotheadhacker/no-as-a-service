@@ -25,21 +25,17 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-// Random rejection reason endpoint
+// Root endpoint - Beautiful web UI
+app.get('/', (req, res) => {
+  const reason = reasons[Math.floor(Math.random() * reasons.length)];
+  const html = htmlTemplate.replace(/{{REASON}}/g, reason);
+  res.send(html);
+});
+
+// API endpoint - JSON only
 app.get('/no', (req, res) => {
   const reason = reasons[Math.floor(Math.random() * reasons.length)];
-
-  // Check if the request is from a browser (wants HTML) or an API client (wants JSON)
-  const acceptsHtml = req.headers.accept && req.headers.accept.includes('text/html');
-
-  if (acceptsHtml) {
-    // Serve beautiful HTML page with Open Graph tags
-    const html = htmlTemplate.replace(/{{REASON}}/g, reason);
-    res.send(html);
-  } else {
-    // Serve JSON for API clients
-    res.json({ reason });
-  }
+  res.json({ reason });
 });
 
 // Start server
