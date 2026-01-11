@@ -28,10 +28,6 @@ Built for humans, excuses, and humor.
 
 Visit the live web interface at **[naas.isalman.dev](https://naas.isalman.dev/)** to get random rejection reasons with a beautiful, shareable UI.
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/hotheadhacker/no-as-a-service/main/assets/imgs/naas-ui-preview.png" width="800" alt="No-as-a-Service Web Interface"/>
-</p>
-
 ### Features:
 - **Random "No" Generator**: Get a new rejection reason with every page load or button click
 - **Copy to Clipboard**: Easily copy any reason to share
