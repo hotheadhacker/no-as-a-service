@@ -48,6 +48,31 @@ GET /no
 
 Use it in apps, bots, landing pages, Slack integrations, rejection letters, or wherever you need a polite (or witty) no.
 
+
+No-as-a-Service now supports multiple languages!
+### 🌐 Language Support
+You can specify the language of the rejection reason by adding a `lang` query parameter to your request. Supported languages (yet to be expanded) :
+- English (`en`)
+- French (`fr`)
+
+**Example Request with Language Parameter**
+```http
+GET /no?lang=fr
+```
+
+**Example Response in French**
+```json
+{
+  "reason": "Désolé, mais je dois refuser cette fois-ci."
+}
+```
+
+In case you don't specify a language or if the specified language is not supported, the API will fallback to the `Accept-Language` header.
+
+If neither the `lang` parameter nor the `Accept-Language` header matches a supported language, the API will default to English (`en`).
+
+In both cases, the response will contain the language used for the rejection reason in the Content-Language header.
+
 ---
 
 ## 🛠️ Self-Hosting
