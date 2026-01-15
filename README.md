@@ -151,8 +151,8 @@ Here are some projects and websites that creatively integrate [no-as-a-service](
 8. **[No as a Service - Raycast Extension](https://www.raycast.com/nedini/no-as-a-service)**  
    Get a random No from within Raycast. Just install the extension from the Raycast store, open Raycast, then type in 'Random No'. Raycast extension: [No as a Service](https://www.raycast.com/nedini/no-as-a-service).
 
-9. **[No-as-a-Service - Slack App](https://slack.com/oauth/v2/authorize?client_id=2550998207090.10222067205218&scope=commands,chat:write&user_scope=)**  
-   Get a random `No` from within Slack. [Install](https://slack.com/oauth/v2/authorize?client_id=2550998207090.10222067205218) the app to your workspace and then use the `/no` command to get a random response. 
+9. **[No-as-a-Service - Slack App](https://github.com/pro100svitlo/no-as-a-service-slack-app)**  
+   Get a random `No` from within Slack. [Install](https://slack.com/oauth/v2/authorize?client_id=2550998207090.10222067205218&scope=commands,chat:write&user_scope=) the app to your workspace and then use the `/no` command to get a random response. 
 
 10. **[Your Project Here?](https://github.com/YOUR_REPO)**  
    If you're using no-as-a-service in your project, open a pull request to be featured here!
