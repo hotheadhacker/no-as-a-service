@@ -16,7 +16,7 @@ Built for humans who know how to take a joke, and those who need to give better 
 **Base URL**
 
 ```
-https://raas.example.dev/roast
+https://raas.rishmi5h.com/roast
 ```
 
 **Method:** `GET`  
