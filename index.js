@@ -2,7 +2,7 @@ const express = require("express");
 const rateLimit = require("express-rate-limit");
 
 const { PORT, DEFAULT_LANG } = require("./constants");
-const { loadReasons } = require("./utils");
+const { loadReasons, parseAcceptLanguage } = require("./utils");
 
 const app = express();
 app.set("trust proxy", true);
@@ -23,7 +23,11 @@ app.use(limiter);
 
 // Random rejection reason endpoint
 app.get("/no", (req, res) => {
-  const lang = req.query.lang || DEFAULT_LANG;
+  // Priority: query param > Accept-Language header > default
+  const lang =
+    req.query.lang ||
+    parseAcceptLanguage(req.headers["accept-language"]) ||
+    DEFAULT_LANG;
   const list = loadReasons(lang);
 
   if (!Array.isArray(list) || list.length === 0) {
