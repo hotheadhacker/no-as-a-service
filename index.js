@@ -1,11 +1,16 @@
 const express = require("express");
 const rateLimit = require("express-rate-limit");
+const express = require("express");
+const cors = require("cors");
+const rateLimit = require("express-rate-limit");
 
 const { PORT, DEFAULT_LANG } = require("./constants");
 const { loadReasons, parseAcceptLanguage } = require("./utils");
 
 const app = express();
+app.use(cors());
 app.set("trust proxy", true);
+const PORT = process.env.PORT || 3000;
 
 // Rate limiter: 120 requests per minute per IP
 const limiter = rateLimit({
