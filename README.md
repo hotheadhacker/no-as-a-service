@@ -24,6 +24,21 @@ Built for humans, excuses, and humor.
 
 ---
 
+## 🎨 Web Interface
+
+Visit the live web interface at **[naas.isalman.dev](https://naas.isalman.dev/)** to get random rejection reasons with a beautiful, shareable UI.
+
+### Features:
+- **Random "No" Generator**: Get a new rejection reason with every page load or button click
+- **Copy to Clipboard**: Easily copy any reason to share
+- **Share Functionality**: Native share support for mobile and desktop
+- **Beautiful Design**: Gradient backgrounds, smooth animations, and responsive layout
+- **Open Graph Tags**: Rich link previews when sharing on social media
+
+The web UI is served at the **root path** (`/`), while the API endpoint remains at `/no` for backward compatibility.
+
+---
+
 ## 🚀 API Usage
 
 **Base URL**
@@ -70,10 +85,9 @@ npm install
 npm start
 ```
 
-The API will be live at:
-```
-http://localhost:3000/no
-```
+The service will be live at:
+- **Web Interface**: `http://localhost:3000/`
+- **API Endpoint**: `http://localhost:3000/no`
 
 You can also change the port using an environment variable:
 ```bash
@@ -86,8 +100,12 @@ PORT=5000 npm start
 
 ```
 no-as-service/
-├── index.js            # Express API
+├── index.js            # Express server (API + Web UI)
 ├── reasons.json        # 1000+ universal rejection reasons
+├── views/
+│   └── no.html         # Beautiful web interface template
+├── assets/
+│   └── imgs/           # Images for README and social sharing
 ├── package.json
 ├── .devcontainer.json  # VS Code / Github devcontainer setup
 └── README.md
