@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 
 // Load reasons from JSON
 const reasons = JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));
+const reasonsEs = JSON.parse(fs.readFileSync('./reasons-es.json', 'utf-8'));
 
 // Rate limiter: 120 requests per minute per IP
 const limiter = rateLimit({
@@ -26,6 +27,12 @@ app.use(limiter);
 // Random rejection reason endpoint
 app.get('/no', (req, res) => {
   const reason = reasons[Math.floor(Math.random() * reasons.length)];
+  res.json({ reason });
+});
+
+// Random rejection reason endpoint (Spanish)
+app.get('/no/es', (req, res) => {
+  const reason = reasonsEs[Math.floor(Math.random() * reasonsEs.length)];
   res.json({ reason });
 });
 
