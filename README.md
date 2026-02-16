@@ -168,8 +168,11 @@ Here are some projects and websites that creatively integrate [no-as-a-service](
 
 14 **[No MCP](https://github.com/clafoutis42/no-mcp)**  
     Perfect for when you want your AI to be consistently negative or just want to add some humor to your MCP setup.
+
+15. **[no-as-a-service-logi-plugin](https://github.com/KobeBrandt/no-as-a-service-logi-plugin)**
+   Adds a button to the Logitech Creative Console and Actions Ring that calls the No-as-a-Service API and types out the response.
     
-15. **[Your Project Here?](https://github.com/YOUR_REPO)**
+16. **[Your Project Here?](https://github.com/YOUR_REPO)**
    If you're using no-as-a-service in your project, open a pull request to be featured here!
 
 ---
