@@ -166,10 +166,13 @@ Here are some projects and websites that creatively integrate [no-as-a-service](
 13. **[No-as-a-Service GNOME Search](https://extensions.gnome.org/extension/9186/naas-gnome-search/)**
    GNOME search provider for the No-as-a-Service API. Type 'no' to get a random excuse. Click or press Enter to copy to clipboard.
 
-14 **[No MCP](https://github.com/clafoutis42/no-mcp)**  
+14. **[Nope App](https://github.com/foss-nope/apple-nope) for iPhone and iPad. Available on [AppStore](https://apps.apple.com/app/id6759522055) **  
+    Simple OpenSource iOS app inspired by this service to find and curate reasons to say no!
+
+15. **[No MCP](https://github.com/clafoutis42/no-mcp)**  
     Perfect for when you want your AI to be consistently negative or just want to add some humor to your MCP setup.
-    
-15. **[Your Project Here?](https://github.com/YOUR_REPO)**
+
+16. **[Your Project Here?](https://github.com/YOUR_REPO)**
    If you're using no-as-a-service in your project, open a pull request to be featured here!
 
 ---
