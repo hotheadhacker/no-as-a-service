@@ -46,6 +46,24 @@ GET /no
 }
 ```
 
+### 🔄 Example Request with lang
+```http
+GET /no?lang=en
+
+or 
+
+curl -X GET \
+  http://localhost:3000/no \
+  -H 'Accept-Language: en'
+```
+
+### ✅ Example Response with lang
+```json
+{
+  "reason": "This feels like something Future Me would yell at Present Me for agreeing to."
+}
+```
+
 Use it in apps, bots, landing pages, Slack integrations, rejection letters, or wherever you need a polite (or witty) no.
 
 ---
