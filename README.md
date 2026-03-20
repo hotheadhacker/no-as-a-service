@@ -1,14 +1,10 @@
-# ❌ No-as-a-Service
+# No-as-a-Service
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/hotheadhacker/no-as-a-service/main/assets/imgs/naas-with-no-logo-bunny.png" width="800" alt="No-as-a-Service Banner" width="70%"/>
 </p>
 
-
-Ever needed a graceful way to say “no”?  
-This tiny API returns random, generic, creative, and sometimes hilarious rejection reasons — perfectly suited for any scenario: personal, professional, student life, dev life, or just because.
-
-Built for humans, excuses, and humor.
+This tiny API returns random, creative, and sometimes hilarious reasons for saying "no". Use it personally, professionally, as a student, as a developer or just because.
 
 <!-- GitAds Sponsorship Badge -->
 <p align="center">
@@ -24,35 +20,25 @@ Built for humans, excuses, and humor.
 
 ---
 
-## 🚀 API Usage
+## API Usage
 
-**Base URL**
-```
-https://naas.isalman.dev/no
-```
-
-**Method:** `GET`  
-**Rate Limit:** `120 requests per minute per IP`
-
-### 🔄 Example Request
+Request:
 ```http
-GET /no
+GET https://naas.isalman.dev/no
 ```
 
-### ✅ Example Response
+Response:
 ```json
 {
   "reason": "This feels like something Future Me would yell at Present Me for agreeing to."
 }
 ```
 
-Use it in apps, bots, landing pages, Slack integrations, rejection letters, or wherever you need a polite (or witty) no.
+The API is rate-limited at 120 requests per minute per IP.
 
 ---
 
-## 🛠️ Self-Hosting
-
-Want to run it yourself? It’s lightweight and simple.
+## Self-Hosting
 
 ### 1. Clone this repository
 ```bash
@@ -82,12 +68,12 @@ PORT=5000 npm start
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 no-as-service/
 ├── index.js            # Express API
-├── reasons.json        # 1000+ universal rejection reasons
+├── reasons.json        # Reasons for rejection
 ├── package.json
 ├── .devcontainer.json  # VS Code / Github devcontainer setup
 └── README.md
@@ -95,7 +81,7 @@ no-as-service/
 
 ---
 
-## 📦 package.json
+## package.json
 
 For reference, here’s the package config:
 
@@ -126,16 +112,16 @@ If you open this repo in Github Codespaces, it will automatically use `.devconta
 ---
 ## Projects Using No-as-a-Service
 
-Here are some projects and websites that creatively integrate [no-as-a-service](https://naas.isalman.dev/no) to deliver humorous or programmatic "no" responses:
+Here are some projects and websites using [no-as-a-service](https://naas.isalman.dev/no):
 
 1. **[no-as-a-service-rust](https://github.com/ZAZPRO/no-as-a-service-rust)**  
    Rust implementation of this project.
 
 2. **[CSG Admins](https://csg-admins.de)**  
-   A system administration and gaming service hub using no-as-a-service to provide playful negative responses across some admin panels and commands.
+   A system administration and gaming service hub using no-as-a-service to provide negative responses across some admin panels and commands.
 
-3. **[FunnyAnswers - /no endpoint](https://www.funnyanswers.lol/no)**  
-   A humor-focused API playground that includes a mirror or wrapper for no-as-a-service, perfect for developers exploring fun HTTP-based responses.
+3. **[FunnyAnswers](https://www.funnyanswers.lol/no)**  
+   An API playground featuring a wrapper for the API.
 
 4. **[Gerador de Frases Aleatórias (pt-BR)](https://github.com/timeuz/frases-aleatorias)**
    Uma reinterpretação em Python com frases em português, frontend e novas categorias.
@@ -180,7 +166,7 @@ Here are some projects and websites that creatively integrate [no-as-a-service](
 > Want to use no-as-a-service in your own project? Check out the usage section in this README and start returning **"no"** like a pro.
 ---
 
-## 👤 Author
+## Author
 
 Created with creative stubbornness by [hotheadhacker](https://github.com/hotheadhacker)
 
