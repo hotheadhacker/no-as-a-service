@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require("cors");
 const rateLimit = require('express-rate-limit');
 const fs = require('fs');
+const path = require('path');
 
 const app = express();
 app.use(cors());
@@ -10,6 +11,9 @@ const PORT = process.env.PORT || 3000;
 
 // Load reasons from JSON
 const reasons = JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));
+
+// Load HTML template
+const htmlTemplate = fs.readFileSync(path.join(__dirname, 'views', 'no.html'), 'utf-8');
 
 // Rate limiter: 120 requests per minute per IP
 const limiter = rateLimit({
@@ -23,7 +27,14 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-// Random rejection reason endpoint
+// Root endpoint - Beautiful web UI
+app.get('/', (req, res) => {
+  const reason = reasons[Math.floor(Math.random() * reasons.length)];
+  const html = htmlTemplate.replace(/{{REASON}}/g, reason);
+  res.send(html);
+});
+
+// API endpoint - JSON only
 app.get('/no', (req, res) => {
   const reason = reasons[Math.floor(Math.random() * reasons.length)];
   res.json({ reason });
