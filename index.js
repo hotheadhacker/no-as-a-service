@@ -34,6 +34,11 @@ app.get('/no', (req, res) => {
       r.mood.includes(mood.toLowerCase())
     );
   }
+  if (filtered.length === 0) {
+    return res.status(404).json({
+    error: "No reasons found for this mood"
+    });
+    }
 
   const reason = filtered[Math.floor(Math.random() * filtered.length)];
   res.json(reason);
