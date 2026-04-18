@@ -44,6 +44,18 @@ app.get('/no', (req, res) => {
   res.json(reason);
 });
 
+// All rejection mood endpoint
+app.get('/moods', (req, res) => {
+  const moods = new Set();
+
+  reasons.forEach(r => {
+    r.mood.forEach(m => moods.add(m));
+  });
+
+  res.json([...moods]);
+});
+
+
 // Start server
 app.listen(PORT, () => {
   console.log(`No-as-a-Service is running on port ${PORT}`);
