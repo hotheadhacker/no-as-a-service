@@ -34,18 +34,62 @@ https://naas.isalman.dev/no
 **Method:** `GET`  
 **Rate Limit:** `120 requests per minute per IP`
 
-### 🔄 Example Request
+### Get random example Request
 ```http
 GET /no
+```
+### Filter by Mood
+
+```http
+GET /no?mood=funny
+```
+
+```http
+GET /no?mood=polite
+```
+
+### Get Available Moods
+
+```http
+GET /moods
 ```
 
 ### ✅ Example Response
 ```json
 {
-  "reason": "This feels like something Future Me would yell at Present Me for agreeing to."
+   "response": "While I appreciate it, exploring this isn't something I can commit to.",
+   "mood": ["polite", "professional"]
 }
 ```
 
+---
+
+## ❌ Example 404 Error Response
+
+When no responses match the requested mood:
+
+```json
+{
+  "error": "No reasons found for this mood"
+}
+```
+
+---
+
+## 🎭 Available Moods
+
+Examples include:
+
+- `funny`
+- `sarcastic`
+- `polite`
+- `professional`
+- `casual`
+- `serious`
+- `absurd`
+- `lazy`
+
+---
 Use it in apps, bots, landing pages, Slack integrations, rejection letters, or wherever you need a polite (or witty) no.
 
 ---
