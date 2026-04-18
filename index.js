@@ -25,8 +25,18 @@ app.use(limiter);
 
 // Random rejection reason endpoint
 app.get('/no', (req, res) => {
-  const reason = reasons[Math.floor(Math.random() * reasons.length)];
-  res.json({ reason });
+  const { mood } = req.query;
+
+  let filtered = reasons;
+
+  if (mood) {
+    filtered = reasons.filter(r =>
+      r.mood.includes(mood.toLowerCase())
+    );
+  }
+
+  const reason = filtered[Math.floor(Math.random() * filtered.length)];
+  res.json(reason);
 });
 
 // Start server
