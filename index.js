@@ -1,31 +1,54 @@
-const express = require('express');
+const express = require("express");
+const rateLimit = require("express-rate-limit");
+const express = require("express");
 const cors = require("cors");
-const rateLimit = require('express-rate-limit');
-const fs = require('fs');
+const rateLimit = require("express-rate-limit");
+
+const { PORT, DEFAULT_LANG } = require("./constants");
+const { loadReasons, parseAcceptLanguage } = require("./utils");
 
 const app = express();
 app.use(cors());
-app.set('trust proxy', true);
+app.set("trust proxy", true);
 const PORT = process.env.PORT || 3000;
-
-// Load reasons from JSON
-const reasons = JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));
 
 // Rate limiter: 120 requests per minute per IP
 const limiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
   max: 120,
   keyGenerator: (req, res) => {
-    return req.headers['cf-connecting-ip'] || req.ip; // Fallback if header missing (or for non-CF)
+    return req.headers["cf-connecting-ip"] || req.ip; // Fallback if header missing (or for non-CF)
   },
-  message: { error: "Too many requests, please try again later. (120 reqs/min/IP)" }
+  message: {
+    error: "Too many requests, please try again later. (120 reqs/min/IP)",
+  },
 });
 
 app.use(limiter);
 
 // Random rejection reason endpoint
-app.get('/no', (req, res) => {
-  const reason = reasons[Math.floor(Math.random() * reasons.length)];
+app.get("/no", (req, res) => {
+  // Priority: query param > Accept-Language header > default
+  const lang =
+    req.query.lang ||
+    parseAcceptLanguage(req.headers["accept-language"]) ||
+    DEFAULT_LANG;
+  const list = loadReasons(lang);
+
+  if (!Array.isArray(list) || list.length === 0) {
+    const fallback = loadReasons(DEFAULT_LANG);
+
+    if (!fallback || fallback.length === 0) {
+      return res.status(204).json({ reason: null });
+    }
+
+    const reason = fallback[Math.floor(Math.random() * fallback.length)];
+
+    return res.json({ reason });
+  }
+
+  const reason = list[Math.floor(Math.random() * list.length)];
+
   res.json({ reason });
 });
 
