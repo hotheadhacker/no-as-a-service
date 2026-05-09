@@ -8,8 +8,13 @@ app.use(cors());
 app.set('trust proxy', true);
 const PORT = process.env.PORT || 3000;
 
-// Load reasons from JSON
-const reasons = JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));
+// Load reasons from reasons directory (JSON files, one per language)
+const langs = fs.readdirSync('./reasons');
+const reasons = {};
+langs.forEach(lang => {
+  const langReasons = JSON.parse(fs.readFileSync(`./reasons/${lang}`, 'utf-8'));
+  reasons[lang.replace('.json', '')] = langReasons;
+});
 
 // Rate limiter: 120 requests per minute per IP
 const limiter = rateLimit({
@@ -25,7 +30,30 @@ app.use(limiter);
 
 // Random rejection reason endpoint
 app.get('/no', (req, res) => {
-  const reason = reasons[Math.floor(Math.random() * reasons.length)];
+  // Determine language from query parameter or default to 'en'
+  // If the requested language is not specified or not available, then check Accept-Language header
+  // If no match found, default to 'en'
+  let lang = 'en';
+  if (req.query.lang && reasons[req.query.lang]) {
+    lang = req.query.lang;
+  } else {
+    if (req.headers['accept-language']) {
+      // Extract languages from header (ignore quality values)
+      // e.g. "en-US,en;q=0.9,fr;q=0.8" -> ["en", "en", "fr"]
+      const acceptedLangs = req.headers['accept-language'].split(',').map(l => l.split(';')[0].trim()).map(l => l.split('-')[0]);
+      // Find the first accepted language that we have reasons for
+      for (const al of acceptedLangs) {
+        if (reasons[al]) {
+          lang = al;
+          break;
+        }
+      }
+    }
+  }
+  const languageReasons = reasons[lang];
+  const reason = languageReasons[Math.floor(Math.random() * languageReasons.length)]; 
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Content-Language', lang);
   res.json({ reason });
 });
 
