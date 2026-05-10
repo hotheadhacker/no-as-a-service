@@ -9,7 +9,13 @@ app.set('trust proxy', true);
 const PORT = process.env.PORT || 3000;
 
 // Load reasons from JSON
-const reasons = JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));
+const reasons = {
+  en: JSON.parse(fs.readFileSync('./reasons.json', 'utf-8')),
+  de: JSON.parse(fs.readFileSync('./reasons-de.json', 'utf-8'))
+};
+
+// Supported languages
+const supportedLangs = Object.keys(reasons);
 
 // Rate limiter: 120 requests per minute per IP
 const limiter = rateLimit({
@@ -25,8 +31,12 @@ app.use(limiter);
 
 // Random rejection reason endpoint
 app.get('/no', (req, res) => {
+  const lang = req.query.lang?.toLowerCase() || 'en';
+  const selectedLang = supportedLangs.includes(lang) ? lang : 'en';
+
+  const langReasons = reasons[selectedLang];
   const reason = reasons[Math.floor(Math.random() * reasons.length)];
-  res.json({ reason });
+  res.json({ reason lang: selectedLang });
 });
 
 // Start server
