@@ -25,9 +25,36 @@ app.use(limiter);
 
 // Random rejection reason endpoint
 app.get('/no', (req, res) => {
-  const reason = reasons[Math.floor(Math.random() * reasons.length)];
-  res.json({ reason });
+  const { mood } = req.query;
+
+  let filtered = reasons;
+
+  if (mood) {
+    filtered = reasons.filter(r =>
+      r.mood.includes(mood.toLowerCase())
+    );
+  }
+  if (filtered.length === 0) {
+    return res.status(404).json({
+    error: "No reasons found for this mood"
+    });
+    }
+
+  const reason = filtered[Math.floor(Math.random() * filtered.length)];
+  res.json(reason);
 });
+
+// All rejection mood endpoint
+app.get('/moods', (req, res) => {
+  const moods = new Set();
+
+  reasons.forEach(r => {
+    r.mood.forEach(m => moods.add(m));
+  });
+
+  res.json([...moods]);
+});
+
 
 // Start server
 app.listen(PORT, () => {
