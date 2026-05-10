@@ -89,8 +89,9 @@ no-as-service/
 ├── index.js            # Express API
 ├── reasons.json        # 1000+ universal rejection reasons
 ├── package.json
-├── .devcontainer.json  # VS Code / Github devcontainer setup
-└── README.md
+├── README.md
+├── Containerfile
+└── .devcontainer.json  # VS Code / Github devcontainer setup
 ```
 
 ---
@@ -119,6 +120,27 @@ For reference, here’s the package config:
 
 ---
 
+## 🫙 Containerfile
+
+### How to Build
+
+podman / docker - use the same arguments, replace podman with docker if needed.
+```bash
+cd no-as-a-service
+podman build -t your-image-name -f Containerfile
+```
+
+### How to Use
+
+podman / docker - use the same arguments, replace podman with docker if needed.
+
+If desired, change the host port, which is the first port listed below. eg; To use local port 4000 change the argument to -p 4000:3000, which maps your host port 4000 to the container port 3000
+
+```bash
+podman run -d -p 3000:3000 your-image-name
+```
+
+---
 ## ⚓ Devcontainer
 
 If you open this repo in Github Codespaces, it will automatically use `.devcontainer.json` to set up your environment.  If you open it in VSCode, it will ask you if you want to reopen it in a container.
