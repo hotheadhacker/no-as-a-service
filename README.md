@@ -26,17 +26,24 @@ Built for humans, excuses, and humor.
 
 ## 🚀 API Usage
 
+This API supports multiple languages! You can specify the language using the `lang` query parameter.
+
+**Supported languages:**
+- `eng` (English - Default)
+- `pt-br` (Português do Brasil)
+
 **Base URL**
 ```
 https://naas.isalman.dev/no
 ```
 
 **Method:** `GET`  
+
 **Rate Limit:** `120 requests per minute per IP`
 
 ### 🔄 Example Request
 ```http
-GET /no
+GET /no?lang=pt-br
 ```
 
 ### ✅ Example Response
@@ -87,9 +94,10 @@ PORT=5000 npm start
 ```
 no-as-service/
 ├── index.js            # Express API
-├── reasons.json        # 1000+ universal rejection reasons
-├── package.json
+├── reasons-en.json     # 1000+ universal rejection reasons
+├── reasons-pt-br.json  # 1000+ universal rejection reasons in Portuguese (Brazil)
 ├── .devcontainer.json  # VS Code / Github devcontainer setup
+├── package.json
 └── README.md
 ```
 

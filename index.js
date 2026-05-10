@@ -9,7 +9,7 @@ app.set('trust proxy', true);
 const PORT = process.env.PORT || 3000;
 
 // Load reasons from JSON
-const reasons = JSON.parse(fs.readFileSync('./reasons.json', 'utf-8'));
+const languages = ['en', 'pt-br']
 
 // Rate limiter: 120 requests per minute per IP
 const limiter = rateLimit({
@@ -25,6 +25,18 @@ app.use(limiter);
 
 // Random rejection reason endpoint
 app.get('/no', (req, res) => {
+  const lang = req.query.lang
+
+  // Empty reasons
+  let reasons;
+
+  // Verifies if the language is avaible, returning it
+  if (lang && typeof lang === "string" && languages.includes(lang.toLowerCase())) {
+    reasons = JSON.parse(fs.readFileSync(`./reasons-${lang.toLowerCase()}.json`, 'utf-8'));
+  } else { // Returns english as default language
+    reasons = JSON.parse(fs.readFileSync(`./reasons-en.json`, 'utf-8'));
+  }
+
   const reason = reasons[Math.floor(Math.random() * reasons.length)];
   res.json({ reason });
 });
