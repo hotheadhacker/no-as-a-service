@@ -172,7 +172,10 @@ Here are some projects and websites that creatively integrate [no-as-a-service](
 15. **[No MCP](https://github.com/clafoutis42/no-mcp)**  
     Perfect for when you want your AI to be consistently negative or just want to add some humor to your MCP setup.
 
-16. **[Your Project Here?](https://github.com/YOUR_REPO)**
+16. **[no-as-a-service-go](https://github.com/bolacha/no-as-a-service-go)**  
+   Go implementation of this project — zero external dependencies, single binary, scratch Docker image.
+
+17. **[Your Project Here?](https://github.com/YOUR_REPO)**
    If you're using no-as-a-service in your project, open a pull request to be featured here!
 
 ---
