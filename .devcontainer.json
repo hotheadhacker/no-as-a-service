@@ -5,8 +5,7 @@
   ],
   "customizations": {
     "vscode": {
-      "extensions": [
-      ]
+      "extensions": []
     }
   },
   "features": {

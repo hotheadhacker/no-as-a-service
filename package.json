@@ -4,13 +4,17 @@
   "description": "A lightweight API that returns random rejection or no reasons.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "prettier": "npx prettier --write .",
+    "eslint": "eslint . --fix"
   },
   "author": "hotheadhacker",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
+    "eslint": "^10.3.0",
     "express": "^4.18.2",
-    "express-rate-limit": "^7.0.0"
+    "express-rate-limit": "^7.0.0",
+    "prettier": "^3.8.3"
   }
 }
