@@ -65,9 +65,19 @@ cd no-as-a-service
 npm install
 ```
 
-### 3. Start the server
+### 3. Compile the TS code
+```bash
+npm run build
+```
+
+### 4. Execute the  build
 ```bash
 npm start
+```
+
+### Another way is run the code as a developer (it'll uses tsx)
+```bash
+npm run dev
 ```
 
 The API will be live at:
@@ -86,9 +96,11 @@ PORT=5000 npm start
 
 ```
 no-as-service/
-├── index.js            # Express API
+├── dist/               # Built code directory
+├── index.ts            # Express API
 ├── reasons.json        # 1000+ universal rejection reasons
 ├── package.json
+├── tsconfig.json       # Typescript settings
 ├── .devcontainer.json  # VS Code / Github devcontainer setup
 └── README.md
 ```
@@ -104,15 +116,28 @@ For reference, here’s the package config:
   "name": "no-as-service",
   "version": "1.0.0",
   "description": "A lightweight API that returns random rejection or no reasons.",
-  "main": "index.js",
+  "main": "index.ts",
+  "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "dev": "tsx watch index.ts",
+    "build": "tsc && copyfiles reasons.json dist/",
+    "start": "node dist/index.js"
   },
   "author": "hotheadhacker",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
     "express": "^4.18.2",
     "express-rate-limit": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/express-rate-limit": "^5.1.3",
+    "copyfiles": "^2.4.1",
+    "tsx": "^4.22.0",
+    "typescript": "^6.0.3"
   }
 }
 ```
@@ -171,8 +196,11 @@ Here are some projects and websites that creatively integrate [no-as-a-service](
 
 15. **[No MCP](https://github.com/clafoutis42/no-mcp)**  
     Perfect for when you want your AI to be consistently negative or just want to add some humor to your MCP setup.
+    
+17. **[No-as-a-Service Portuguese TS](https://github.com/VitaoDeveloper/no-as-a-service-portuguese-ts)**
+    The same API, but using Typescript as the main language and translated into Portuguese by a brazilian developer.
 
-16. **[Your Project Here?](https://github.com/YOUR_REPO)**
+18. **[Your Project Here?](https://github.com/YOUR_REPO)**
    If you're using no-as-a-service in your project, open a pull request to be featured here!
 
 ---
