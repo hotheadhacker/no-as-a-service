@@ -34,15 +34,31 @@ https://naas.isalman.dev/no
 **Method:** `GET`  
 **Rate Limit:** `120 requests per minute per IP`
 
-### 🔄 Example Request
+### Query Parameters
+- `emojis` (optional): Set to `true` to get reasons with emojis. Default is `false`.
+
+### 🔄 Example Requests
 ```http
 GET /no
 ```
 
-### ✅ Example Response
+```http
+GET /no?emojis=true
+```
+
+### ✅ Example Responses
+
+Without emojis:
 ```json
 {
   "reason": "This feels like something Future Me would yell at Present Me for agreeing to."
+}
+```
+
+With emojis (`?emojis=true`):
+```json
+{
+  "reason": "🚀 This feels like something Future Me would yell at Present Me for agreeing to."
 }
 ```
 
