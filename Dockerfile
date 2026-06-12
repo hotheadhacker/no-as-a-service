@@ -1,11 +1,13 @@
-FROM docker.io/node:22-alpine
-ENV NODE_ENV=production
+FROM node:18-alpine
 
-WORKDIR /app
+WORKDIR /usr/src/app
+
 COPY package*.json ./
-RUN npm install --omit=dev && npm cache clean --force
+
+RUN npm install --production
+
 COPY . .
-USER node
+
 EXPOSE 3000
 
 CMD ["npm", "start"]
