@@ -172,7 +172,10 @@ Here are some projects and websites that creatively integrate [no-as-a-service](
 15. **[No MCP](https://github.com/clafoutis42/no-mcp)**  
     Perfect for when you want your AI to be consistently negative or just want to add some humor to your MCP setup.
 
-16. **[Your Project Here?](https://github.com/YOUR_REPO)**
+16. **[The No of the Day](https://noofthe.day)**  
+    One No for every calendar date: each day gets its own no-as-a-service reason, the same for everyone, with a page for any date (like `/2026-11-25`) and shareable cards.
+
+17. **[Your Project Here?](https://github.com/YOUR_REPO)**
    If you're using no-as-a-service in your project, open a pull request to be featured here!
 
 ---
